@@ -90,6 +90,8 @@ if selected=="Palette Optimal":
         st_lottie(lottie_coding,speed=1,reverse=False,loop=True,quality="high",height=200, width=None, key=None,)
 
         df2 = pd.read_excel('data2.xlsx')
+        df2.to_csv('data2new.csv', index=False)
+        df2 = pd.read_csv('data2new.csv')
 
         # Constraint
         st.sidebar.title("Constraint")
