@@ -77,7 +77,7 @@ if selected=="Data Overview":
     else:
         st.info("Select your Dataset")
 #==============================================Clustering=======================================================
-if selected=="Palette Optimal":
+if selected=="Palette Optimales":
     with st.sidebar:
     # creer une animation
     # Creer un slider
