@@ -94,7 +94,7 @@ if selected=="Palette Optimal":
         # Constraint
         st.sidebar.title("Constraint")
         pallet =st.sidebar.slider("Maximum Height of palette : ",0, 5, 1)
-        poids =st.sidebar.slider("Maximum Weight of palette : ", 0, 50, 23)
+        poids =st.sidebar.slider("Maximum Weight of palette : ", 0, 60, 23)
         #input
         pallet*=100   # pallette en cm
         poids*=100  # poids en Kg
