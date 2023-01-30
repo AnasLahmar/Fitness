@@ -7,7 +7,7 @@ import pandas as pd
 
 #==============================================Start=============================================================
 # Interface Application------------------------------------------------------------------------------------------
-st.write(""" ## Projet Génie Industriel et Productive :""")
+st.write(""" ## Projet Génie Industriel et Productif :""")
 st.write(""" ###  Automatiser le processus d'affectation des palettes """)
 
 selected=option_menu(
