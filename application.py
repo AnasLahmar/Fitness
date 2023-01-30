@@ -64,7 +64,6 @@ if selected=="Data Overview":
             if radiodicover=="Header":
                 st.write(""" ### Results : """)
                 st.write(data.head(data.shape[0]))
-                st.write(data.head(data.shape[0]))
             if radiodicover=="Shape":
                 st.write(""" ### Results : """)
                 st.success(data.shape)
