@@ -55,8 +55,7 @@ if selected=="Data Overview":
     st.sidebar.title("Select Your Dataset")
     upload_file=st.sidebar.file_uploader("Select:",type=["csv"])
     if upload_file is not None:
-        data=pd.read_excel(upload_file)
-        data.to_csv('data.csv', index=False)
+        data=pd.read_csv(upload_file)
         st.success("Dataset has selected successfully")
          ##### Encodding------------------------------------------------------------------------------------------
         if st.checkbox("Discover your Data") :
