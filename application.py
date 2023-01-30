@@ -7,11 +7,11 @@ import pandas as pd
 
 #==============================================Start=============================================================
 # Interface Application------------------------------------------------------------------------------------------
-st.write(""" ## Projet Génie Industriel""")
+st.write(""" ## Projet Génie Industriel et Productive : Automatiser le processus d'affectation des palettes""")
 
 selected=option_menu(
     menu_title="Main Menu",
-    options=["Home","Data Overview","Palette Optimal"],
+    options=["Home","Data Overview","Palette Optimales"],
     icons=["house","bar-chart"],
     menu_icon="cast",  # optional
     default_index=0,
@@ -53,7 +53,7 @@ if selected=="Data Overview":
         st_lottie(lottie_coding,speed=1,reverse=False,loop=True,quality="high",height=200, width=None, key=None,)
     # Chose csv file------------------------------------------------------------------------------------------
     st.sidebar.title("Select Your Dataset")
-    upload_file=st.sidebar.file_uploader("Select:",type=["xlsx"])
+    upload_file=st.sidebar.file_uploader("Select:",type=["csv"])
     if upload_file is not None:
         data=pd.read_excel(upload_file)
         data.to_csv('data.csv', index=False)
@@ -102,9 +102,9 @@ if selected=="Palette Optimal":
         poids*=100  # poids en Kg
 
     st.write(''' ### Material : ''')
-    material=st.selectbox('Select the Material to shop',df2["material"])
+    material=st.selectbox('Select a Material',df2["material"])
     if material:
-        st.success("You have selected {}".format(material))
+        st.info("You have selected {}".format(material))
     else:
         st.info("Select Matreial wanted !")
     row_index2 = df2.index[df2['material'] == material].tolist()[0]
@@ -123,7 +123,7 @@ if selected=="Palette Optimal":
         newpoids=poids*number
 
     if st.checkbox("Show the Results"):
-        st.success("To shop the Material {} with {} quantitie (s) you need {} palette(s)".format(material,number_package,number))
+        st.success("To delivre the Material {} with {} package(s) you need {} palette(s)".format(material,number_package,number))
         
     
 
