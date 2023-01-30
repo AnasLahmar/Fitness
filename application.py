@@ -37,7 +37,7 @@ if selected=="Home":
     loop=True,
     quality="low", # medium ; high
 
-    height=250,
+    height=300,
     width=None,
     key=None,
 )
