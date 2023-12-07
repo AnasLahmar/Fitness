@@ -39,7 +39,7 @@ if selected_option == "Home":
     st.write(""" #### Application 100% Fitness and Nutrution""")
     st.write("devlopped by Anas LAHMAR")
 
-    lottie_coding = load_lottiefile("home.json")  # replace link to local lottie file
+    lottie_coding = load_lottiefile("json/home.json")  # replace link to local lottie file
     st_lottie(
     lottie_coding,
     speed=1,
@@ -56,7 +56,7 @@ if selected_option == "Food Consumption":
     
     quantites_eated()
     with st.sidebar : 
-        lottie_coding = load_lottiefile("page.json")  # replace link to local lottie file
+        lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
         st_lottie(
         lottie_coding,
         speed=1,
@@ -82,7 +82,7 @@ if 'genre' not in st.session_state:
 
 if selected_option == "Caloric Needs":
     with st.sidebar :
-        lottie_coding = load_lottiefile("page.json")  # replace link to local lottie file
+        lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
         st_lottie(
         lottie_coding,
         speed=1,
@@ -112,7 +112,7 @@ if selected_option == "Performance Data":
     else :
         st.info("Please entrer tes aliments")
     with st.sidebar :
-        lottie_coding = load_lottiefile("page.json")  # replace link to local lottie file
+        lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
         st_lottie(
         lottie_coding,
         speed=1,
