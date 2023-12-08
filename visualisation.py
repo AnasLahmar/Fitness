@@ -25,7 +25,7 @@ def visualisation(poids, genre,activity_level,user_id):
         besoin_calories = st.number_input("besoin_calories (kal)", min_value=0, value=1500, step=1)
         proteines, glucides, graisses = macronutriments(poids, genre, activity_level)
 
-    # Charger le fichier Excel dans un DataFrame
+    # Charger le fichier excel dans un DataFrame
     besoin = pd.read_excel(f'data/besoin_en_aliments_{user_id}.xlsx')
 
     aliment_jour = pd.read_excel(f'data/donnees_alimentaires_{user_id}.xlsx', parse_dates=['Jour'])

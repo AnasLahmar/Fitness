@@ -82,11 +82,11 @@ def get_all_users():
     return users
 
 def create_file(user_id):
-    # Définir le chemin du fichier Excel en fonction de l'identifiant utilisateur
+    # Définir le chemin du fichier excel en fonction de l'identifiant utilisateur
     file_path = f"data/donnees_alimentaires_{user_id}.xlsx"
 
     # Vérifier si le fichier existe déjà
     if not os.path.exists(file_path):
-        # Créer un DataFrame vide et le sauvegarder dans le fichier Excel
+        # Créer un DataFrame vide et le sauvegarder dans le fichier excel
         pd.DataFrame().to_excel(file_path, index=False)
 

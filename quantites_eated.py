@@ -43,13 +43,13 @@ def add_to_excel(columns, data,user_id):
     # Écrire le DataFrame mis à jour dans le fichier Excel
     df.to_excel(f'data/donnees_alimentaires_{user_id}.xlsx', index=False)
 
-def delete_last_entry(excel_file_path):
+def delete_last_entry(user_id):
     # Fonction pour supprimer la dernière ligne du fichier Excel
-    if os.path.isfile(excel_file_path):
-        df = pd.read_excel(excel_file_path)
-        if not df.empty:
-            df = df.iloc[:-1]  # Supprimer la dernière ligne
-            df.to_excel(excel_file_path, index=False)
+    df = pd.read_excel(f'data/donnees_alimentaires_{user_id}.xlsx')
+    if not df.empty:
+        df = df.iloc[:-1]  # Supprimer la dernière ligne
+        df.to_excel(f'data/donnees_alimentaires_{user_id}.xlsx', index=False)
+
     
 
 def quantites_eated(user_id):
@@ -141,14 +141,18 @@ def quantites_eated(user_id):
                     add_to_excel(keys_list, data, user_id)
 
             # Afficher les données existantes
-            st.subheader("Information saved up to now")
-            exist_data = pd.read_excel(f'data/donnees_alimentaires_{user_id}.xlsx')
-            st.write(exist_data)
+            
+            
 
             # Bouton pour supprimer la dernière entrée
             if but2.button("Delete Last Entry"):
-                delete_last_entry(excel_file_path)
+                delete_last_entry(user_id)
                 st.success("Last entry deleted successfully!")
+
+
+            st.subheader("Information saved up to now")
+            exist_data = pd.read_excel(f'data/donnees_alimentaires_{user_id}.xlsx')
+            st.write(exist_data)
 
         else:
             st.info("Please add and save a food item")

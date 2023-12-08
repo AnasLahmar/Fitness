@@ -12,7 +12,7 @@ def show_modal(new_champ, quantite_mesure, proteines, glucides, graisses, calori
         "besoin_calories": calories
     }
 
-    # Charger les données existantes depuis le fichier Excel (s'il existe)
+    # Charger les données existantes depuis le fichier excel (s'il existe)
     try:
         df = pd.read_excel(f'data/besoin_en_aliments_{user_id}.xlsx')
     except FileNotFoundError:
@@ -27,5 +27,5 @@ def show_modal(new_champ, quantite_mesure, proteines, glucides, graisses, calori
     else:
         df = new_data.copy()
 
-    # Enregistrer la DataFrame mise à jour dans le fichier Excel
+    # Enregistrer la DataFrame mise à jour dans le fichier excel
     df.to_excel(f'data/besoin_en_aliments_{user_id}.xlsx', index=False)

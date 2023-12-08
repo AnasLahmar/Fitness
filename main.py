@@ -125,7 +125,7 @@ if selected_option == "Performance Data":
                 # Appel à votre fonction de visualisation
                 visualisation(st.session_state.poids, st.session_state.genre, st.session_state.activity_level,st.session_state.user_id)
         else :
-            st.info("Please entrer tes aliments")
+            st.info("Please Add your Fucking Food")
         with st.sidebar :
             lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
             st_lottie(
