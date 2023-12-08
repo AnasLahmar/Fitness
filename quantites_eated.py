@@ -73,7 +73,7 @@ def quantites_eated(user_id):
 
     # Charger les données existantes à partir du fichier pickle (s'il existe)
     try:
-        with open("data/data_champs.pkl", "rb") as file:
+        with open(f"data/data_champs_{user_id}.pkl", "rb") as file:
             data_champs = pickle.load(file)
     except FileNotFoundError:
         # Si le fichier n'existe pas encore, initialisez avec les données actuelles
@@ -98,7 +98,7 @@ def quantites_eated(user_id):
             data_champs.append({new_champ: unite})
 
             # Sauvegarder les données mises à jour dans le fichier pickle
-            with open("data/data_champs.pkl", "wb") as file:
+            with open(f"data/data_champs_{user_id}.pkl", "wb") as file:
                 pickle.dump(data_champs, file)
 
     # Afficher tous les éléments de data_entries
