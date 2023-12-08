@@ -52,7 +52,6 @@ def interface_connexion(user_id, first_name_connect):
             first_name_connect = get_user_first_name(user_id)
 
             if user_id:
-                st.write(user_id)
                 st.success(f"Connexion réussie! Bienvenue: {first_name_connect}")
                 create_file(user_id)
             else:

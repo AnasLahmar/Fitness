@@ -124,7 +124,7 @@ def quantites_eated(user_id):
 
     # Check if the Excel file exists
     # Check if the Excel file exists
-    but1,but2,but3=st.columns([0.4,0.4,3])
+    but1,but2,but3=st.columns([0.5,0.5,2.6])
     if os.path.isfile(excel_file_path):
         # File exists, read it into a DataFrame
         exist_besoin_data = pd.read_excel(excel_file_path)
