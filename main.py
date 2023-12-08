@@ -6,6 +6,10 @@ from streamlit_option_menu import option_menu
 from visualisation import visualisation
 from besoin_en_calories import besoin_en_calories
 from quantites_eated import quantites_eated
+from interface_connexion import interface_connexion
+
+
+    
 
 
 
@@ -32,40 +36,42 @@ with st.sidebar:
 
 
 
+# Définir les variables de session
+if 'user_id' not in st.session_state:
+    st.session_state.user_id = None
+
+if 'first_name' not in st.session_state:
+    st.session_state.first_name = None
+
 
 
 if selected_option == "Home":
-    st.title("Hey ! : Aji T9aD Format")
-    st.write(""" #### Application 100% Fitness and Nutrution""")
-    st.write("devlopped by Anas LAHMAR")
+    user_id_connect=None
+    first_name_connect=None
+    st.session_state.user_id, st.session_state.first_name = interface_connexion(user_id_connect, first_name_connect)
 
-    lottie_coding = load_lottiefile("json/home.json")  # replace link to local lottie file
-    st_lottie(
-    lottie_coding,
-    speed=1,
-    reverse=False,
-    loop=True,
-    quality="low", # medium ; high
-
-    height=400,
-    width=None,)
 
 
 
 if selected_option == "Food Consumption":
-    
-    quantites_eated()
-    with st.sidebar : 
-        lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
-        st_lottie(
-        lottie_coding,
-        speed=1,
-        reverse=False,
-        loop=True,
-        quality="low", # medium ; high
+    if st.session_state.user_id == None and st.session_state.first_name == None :
+        st.info("Please connect !")
 
-        height=160,
-        width=None,)
+
+    else :
+    
+        quantites_eated(st.session_state.user_id)
+        with st.sidebar : 
+            lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
+            st_lottie(
+            lottie_coding,
+            speed=1,
+            reverse=False,
+            loop=True,
+            quality="low", # medium ; high
+
+            height=160,
+            width=None,)
 
 
 # Définir les variables de session
@@ -81,44 +87,53 @@ if 'genre' not in st.session_state:
 
 
 if selected_option == "Caloric Needs":
-    with st.sidebar :
-        lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
-        st_lottie(
-        lottie_coding,
-        speed=1,
-        reverse=False,
-        loop=True,
-        quality="low", # medium ; high
+    if st.session_state.user_id == None and st.session_state.first_name == None :
+        st.info("Please connect !")
 
-        height=200,
-        width=None,)
 
-    poids, genre, activity_level = besoin_en_calories()
-    
-    # Mettre à jour les variables de session
-    st.session_state.poids = poids
-    st.session_state.genre = genre
-    st.session_state.activity_level = activity_level
+    else :
+        with st.sidebar :
+            lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
+            st_lottie(
+            lottie_coding,
+            speed=1,
+            reverse=False,
+            loop=True,
+            quality="low", # medium ; high
+
+            height=200,
+            width=None,)
+
+        poids, genre, activity_level = besoin_en_calories()
+        
+        # Mettre à jour les variables de session
+        st.session_state.poids = poids
+        st.session_state.genre = genre
+        st.session_state.activity_level = activity_level
 
 if selected_option == "Performance Data":
-    
-    exist_data = pd.read_excel("data/donnees_alimentaires.xlsx")
-    if len(exist_data) !=0 :
-        if st.session_state.poids is None and st.session_state.genre is None and st.session_state.activity_level is None:
-            st.warning("Tu dois sélectionner l'âge et ton poids avant d'entrer à cette partie")
-        else:
-            # Appel à votre fonction de visualisation
-            visualisation(st.session_state.poids, st.session_state.genre, st.session_state.activity_level)
-    else :
-        st.info("Please entrer tes aliments")
-    with st.sidebar :
-        lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
-        st_lottie(
-        lottie_coding,
-        speed=1,
-        reverse=False,
-        loop=True,
-        quality="low", # medium ; high
+    if st.session_state.user_id == None and st.session_state.first_name == None :
+        st.info("Please connect !")
 
-        height=200,
-        width=None,)
+
+    else :
+        exist_data = pd.read_excel(f"data/donnees_alimentaires_{st.session_state.user_id}.xlsx")
+        if len(exist_data) !=0 :
+            if st.session_state.poids is None and st.session_state.genre is None and st.session_state.activity_level is None:
+                st.warning("Tu dois sélectionner l'âge et ton poids avant d'entrer à cette partie")
+            else:
+                # Appel à votre fonction de visualisation
+                visualisation(st.session_state.poids, st.session_state.genre, st.session_state.activity_level,st.session_state.user_id)
+        else :
+            st.info("Please entrer tes aliments")
+        with st.sidebar :
+            lottie_coding = load_lottiefile("json/page.json")  # replace link to local lottie file
+            st_lottie(
+            lottie_coding,
+            speed=1,
+            reverse=False,
+            loop=True,
+            quality="low", # medium ; high
+
+            height=200,
+            width=None,)

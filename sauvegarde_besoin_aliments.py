@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-def show_modal(new_champ, quantite_mesure, proteines, glucides, graisses, calories):
+def show_modal(new_champ, quantite_mesure, proteines, glucides, graisses, calories,user_id):
     # Créer un dictionnaire avec les données entrées
     nouvel_aliment = {
         "Aliments": new_champ,
@@ -14,7 +14,7 @@ def show_modal(new_champ, quantite_mesure, proteines, glucides, graisses, calori
 
     # Charger les données existantes depuis le fichier Excel (s'il existe)
     try:
-        df = pd.read_excel("besoin_en_aliments.xlsx")
+        df = pd.read_excel(f'data/besoin_en_aliments_{user_id}.xlsx')
     except FileNotFoundError:
         df = pd.DataFrame(columns=["Aliments", "Qte", "Protéine", "Carbs", "graisse", "besoin_calories"])
 
@@ -28,4 +28,4 @@ def show_modal(new_champ, quantite_mesure, proteines, glucides, graisses, calori
         df = new_data.copy()
 
     # Enregistrer la DataFrame mise à jour dans le fichier Excel
-    df.to_excel("besoin_en_aliments.xlsx", index=False)
+    df.to_excel(f'data/besoin_en_aliments_{user_id}.xlsx', index=False)

@@ -7,7 +7,7 @@ from optimization import optimize_nutrition
 from metric_card import style_metric_cards_vis
 from macronutriments import macronutriments
 
-def visualisation(poids, genre,activity_level):
+def visualisation(poids, genre,activity_level,user_id):
     m = st.markdown("""
             <style>
             div.stButton > button:first-child {
@@ -26,9 +26,9 @@ def visualisation(poids, genre,activity_level):
         proteines, glucides, graisses = macronutriments(poids, genre, activity_level)
 
     # Charger le fichier Excel dans un DataFrame
-    besoin = pd.read_excel('data/besoin_en_aliments.xlsx')
+    besoin = pd.read_excel(f'data/besoin_en_aliments_{user_id}.xlsx')
 
-    aliment_jour = pd.read_excel('data/donnees_alimentaires.xlsx', parse_dates=['Jour'])
+    aliment_jour = pd.read_excel(f'data/donnees_alimentaires_{user_id}.xlsx', parse_dates=['Jour'])
     columns_list_aliments = aliment_jour.columns[1:].tolist()
 
     # Sélectionner les colonnes d'intérêt
@@ -101,7 +101,7 @@ def visualisation(poids, genre,activity_level):
 
     # Ajuster la taille de la figure
     fig.update_layout(
-        width=900,  # Définir la largeur de la figure
+        width=1700,  # Définir la largeur de la figure
         height=400,  # Définir la hauteur de la figure
     )
 
@@ -110,6 +110,6 @@ def visualisation(poids, genre,activity_level):
 
     if st.checkbox("Optimize nutrition"):
         # Appeler la fonction d'optimisation
-        optimize_nutrition(delta_proteine,delta_carbs,delta_graisse,delta_calories)
+        optimize_nutrition(delta_proteine,delta_carbs,delta_graisse,delta_calories,user_id)
 
 

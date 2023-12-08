@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-def optimize_nutrition(delta_proteine,delta_carbs,delta_graisse,delta_calories):
+def optimize_nutrition(delta_proteine,delta_carbs,delta_graisse,delta_calories,user_id):
     # Charger le fichier Excel dans un DataFrame
-    besoin = pd.read_excel('data/besoin_en_aliments.xlsx')
+    besoin = pd.read_excel(f'data/besoin_en_aliments_{user_id}.xlsx')
 
     # Convert index values to strings
     macronutriments=st.radio('Macronutriments',["Protein","Carbs","Fat"],horizontal=True)
